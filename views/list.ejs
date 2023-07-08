@@ -8,7 +8,16 @@
 </head>
 
 <body>
-  <h1>It's a <%= weekday%> !</h1>
+  <!-- everything js should be inside <% %> these things -->
+  <% if(weekday=='Saturday' || weekday=='Sunday' ){ %>
+    <h1 style='color:purple'>
+      <%= weekday%> ToDo List
+    </h1>
+    <% } else{ %>
+      <h1 style='color:green'>
+        <%= weekday%> ToDo List
+      </h1>
+      <%} %>
 </body>
 
 </html>
