@@ -5,19 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To do List</title>
+  <link rel="stylesheet" href="public\css\styless.css">
 </head>
 
 <body>
-  <!-- everything js should be inside <% %> these things -->
-  <% if(weekday=='Saturday' || weekday=='Sunday' ){ %>
-    <h1 style='color:purple'>
-      <%= weekday%> ToDo List
-    </h1>
-    <% } else{ %>
-      <h1 style='color:green'>
-        <%= weekday%> ToDo List
-      </h1>
-      <%} %>
+  <h1>
+    <%= weekday %>
+  </h1>
+
+  <ul>
+    <li>Buy food</li>
+    <li>Cook food</li>
+    <li>Eat food</li>
+    <% newListItems.forEach(item=> { %>
+      <li>
+        <%= item %>
+      </li>
+      <% }) %>
+  </ul>
+
+  <form class="item" action="/" method="POST">
+    <input type="text" placeholder="Enter Task" name="newItem">
+    <button type="submit" name="button">Add</button>
+  </form>
+
 </body>
 
 </html>

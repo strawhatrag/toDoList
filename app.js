@@ -1,47 +1,28 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
 
 const app = express();
+let items = [];
 
-// using EJS with express
 app.set("view engine", "ejs");
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
-  var date = new Date();
+  let day = date();
+  res.render("list", { weekday: day, newListItems: items });
+});
 
-  let currentday = date.getDay();
-  let day = "";
+app.post("/", (req, res) => {
+  var item = req.body.newItem;
 
-  switch (currentday) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Monday";
-      break;
-    case 2:
-      day = "Tuesday";
-      break;
-    case 3:
-      day = "Wednesday";
-      break;
-    case 4:
-      day = "Thursday";
-      break;
-    case 5:
-      day = "Friday";
-      break;
-    case 6:
-      day = "Saturday";
-      break;
-    default:
-      day = "Invalid day";
-      break;
-  }
-  //ejs render
-  res.render("list", { weekday: day });
+  items.push(item);
+
+  res.redirect("/");
 });
 
 app.listen(3000, () => {
-  console.log("listening on http://localhost:3000");
+  console.log("Listening on http://localhost:3000");
 });
