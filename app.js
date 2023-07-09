@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  let day = date();
+  let day = date.getDate();
   res.render("list", { weekday: day, newListItems: items });
 });
 

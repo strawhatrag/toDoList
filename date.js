@@ -1,15 +1,15 @@
-function getDate() {
-  let currentDay = new Date();
+const currentDay = new Date();
 
-  var options = {
+function getDate() {
+  return currentDay.toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
     month: "long",
-  };
-
-  var day = currentDay.toLocaleDateString("en-US", options);
-
-  return day;
+  });
 }
 
-module.exports = getDate;
+function getDay() {
+  return currentDay.toLocaleDateString("en-US", { weekday: "long" });
+}
+
+module.exports = { getDate, getDay };
