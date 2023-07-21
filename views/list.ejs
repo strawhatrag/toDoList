@@ -18,12 +18,14 @@
       <div class="columns">
         <ul class="column">
           <% newListItems.forEach(item=> { %>
-            <li>
-              <input type="checkbox" id="<%= item %>" name="<%= item %>">
-              <label for="<%= item %>">
-                <%= item %>
-              </label>
-            </li>
+            <form action="/delete" method="post">
+              <div class="item">
+                <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
+                <p>
+                  <%=item.name%>
+                </p>
+              </div>
+            </form>
             <% }) %>
         </ul>
       </div>

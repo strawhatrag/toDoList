@@ -29,12 +29,19 @@ app.get("/", async (req, res) => {
   let day = date.getDate();
   try {
     let tasks = await Todo.find({});
-    let names = tasks.map((task) => task.name);
-    res.render("list", { weekday: day, newListItems: names });
+    res.render("list", { weekday: day, newListItems: tasks });
   } catch (err) {
     console.error("Error fetching data from the database:", err);
     res.status(500).send("Error fetching data from the database");
   }
+});
+
+app.post("/delete", async (req, res) => {
+  let delItem = await req.body.checkbox;
+
+  await Todo.findByIdAndDelete({ _id: delItem });
+  console.log("deleted item");
+  res.redirect("/");
 });
 
 app.post("/", async (req, res) => {
