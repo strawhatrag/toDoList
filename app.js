@@ -11,10 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // mongoose connect, schema, and model
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://theluffycoin:6WXfowdD8ncYD5JQ@cluster0.xveoitr.mongodb.net/?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const todoSchema = {
   name: String,
@@ -33,11 +36,11 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/:customList", (req, res) => {
-  const customList = req.params.customList;
+// app.get("/:customList", (req, res) => {
+//   const customList = req.params.customList;
 
-  res.render();
-});
+//   res.render();
+// });
 
 app.post("/delete", async (req, res) => {
   let delItem = await req.body.checkbox;
