@@ -17,10 +17,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", {
 });
 
 const todoSchema = {
-  name: {
-    type: String,
-    required: true,
-  },
+  name: String,
 };
 
 const Todo = mongoose.model("Todo", todoSchema);
@@ -34,6 +31,12 @@ app.get("/", async (req, res) => {
     console.error("Error fetching data from the database:", err);
     res.status(500).send("Error fetching data from the database");
   }
+});
+
+app.get("/:customList", (req, res) => {
+  const customList = req.params.customList;
+
+  res.render();
 });
 
 app.post("/delete", async (req, res) => {
